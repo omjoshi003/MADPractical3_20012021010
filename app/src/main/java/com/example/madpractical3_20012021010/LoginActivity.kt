@@ -3,6 +3,7 @@ package com.example.madpractical3_20012021010
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.method.LinkMovementMethod
 import androidx.core.view.WindowCompat
 import com.example.madpractical3_20012021010.databinding.ActivityLoginBinding
 
@@ -19,7 +20,15 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setSupportActionBar(binding.toolbar)
+        setSupportActionBar(binding.toolbar1)
+
+        binding.signUpText.setOnClickListener {
+            Intent(this, RegistrationActivity::class.java).also {
+                startActivity(it) }
+            binding.signUpText.movementMethod=
+                LinkMovementMethod.getInstance();
+
+        }
 
         binding.BottomNavigationView.id = R.id.bottom_nav_reg
         binding.BottomNavigationView.setOnItemSelectedListener { it2 ->
@@ -31,7 +40,10 @@ class LoginActivity : AppCompatActivity() {
                     Intent(this, LoginActivity::class.java).also { startActivity(it) }
                 }
             }
+
             return@setOnItemSelectedListener true
         }
     }
+
+
 }
